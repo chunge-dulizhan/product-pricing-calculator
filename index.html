@@ -1,0 +1,368 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>春哥定价模型 V3.0｜带教咨询微信号：ch022427</title>
+<style>
+:root{--bg:#f4f6f9;--card:#fff;--ink:#172033;--muted:#667085;--line:#e4e7ec;--blue:#2457d6;--blue-light:#eef4ff;--green:#087443;--amber:#a15c07;--red:#b42318}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:Arial,"Microsoft YaHei",sans-serif;color:var(--ink);padding:24px}
+.container{max-width:1120px;margin:0 auto}
+.hero{background:linear-gradient(135deg,#172b4d,#2457d6);color:#fff;padding:30px;border-radius:18px;box-shadow:0 8px 24px #172b4d20}
+.eyebrow{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;opacity:.8}
+h1{font-size:clamp(25px,4vw,36px);margin:10px 0 8px}
+.subtitle{margin:0;color:#e4ebff;line-height:1.6}
+.brand{margin-top:18px;font-size:14px;font-weight:700;letter-spacing:.5px}
+.layout{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 3px 12px #10182808;min-width:0}
+h2{font-size:19px;margin:0 0 6px}
+.desc{color:var(--muted);font-size:13px;line-height:1.6;margin:0 0 18px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{min-width:0}
+label{display:block;font-size:13px;color:#344054;margin-bottom:7px;font-weight:600}
+input,select{width:100%;border:1px solid #d0d5dd;border-radius:9px;padding:11px 12px;font-size:15px;color:var(--ink);background:#fff;outline:none}
+input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #2457d61c}
+.help{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.4}
+.full{grid-column:1/-1}
+.divider{height:1px;background:var(--line);margin:19px 0}
+.results{display:grid;gap:10px}
+.result{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #eef0f3}
+.result:last-child{border-bottom:0}
+.result span{color:#475467;font-size:14px}
+.result strong{font-size:16px;text-align:right;overflow-wrap:anywhere}
+.hero-result{background:var(--blue-light);border:1px solid #d6e4ff;padding:17px;border-radius:12px;margin-bottom:12px}
+.hero-result .label{font-size:13px;color:#344e85}
+.hero-result .value{font-size:34px;font-weight:800;color:#1947b8;margin:7px 0}
+.hero-result .small{font-size:12px;color:#52658e;line-height:1.5}
+.pill{display:inline-block;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:700;background:#ecfdf3;color:var(--green)}
+.pill.warn{background:#fffaeb;color:var(--amber)}
+.pill.bad{background:#fef3f2;color:var(--red)}
+.note{padding:13px 14px;background:#f8fafc;border:1px solid var(--line);border-radius:10px;font-size:13px;color:#475467;line-height:1.7;margin-top:14px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+button{border:0;border-radius:9px;padding:11px 15px;font-size:14px;font-weight:700;cursor:pointer}
+.primary{background:var(--blue);color:white}
+.secondary{background:#eef2f6;color:#344054}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:11px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{color:var(--muted);font-weight:600;background:#fafafa}
+td:last-child,th:last-child{text-align:right}
+.footer{text-align:center;color:#98a2b3;font-size:12px;padding:22px 0 6px}
+@media(max-width:800px){body{padding:12px}.layout{grid-template-columns:1fr}.hero{padding:23px}.card{padding:17px}}
+@media(max-width:430px){.fields{grid-template-columns:1fr}.full{grid-column:auto}.hero-result .value{font-size:30px}}
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="hero">
+    <div class="eyebrow">DTC E-commerce Pricing Tool</div>
+    <h1>春哥定价模型 V3.0</h1>
+    <p class="subtitle">亿级操盘手实战出品｜算透成本与CPA，精准反推目标利润售价。</p>
+    <div class="brand">独立站春哥｜带教咨询微信号：ch022427 </div>
+  </header>
+
+  <div class="layout">
+    <section class="card">
+      <h2>① 产品与订单成本</h2>
+      <p class="desc">金额以美元计。请按每笔订单实际承担的成本填写；客户支付的运费也可作为收入计入。</p>
+      <div class="fields">
+        <div class="field">
+          <label for="productCost">产品成本 ($)</label>
+          <input id="productCost" type="number" min="0" step="0.01" value="18">
+        </div>
+        <div class="field">
+          <label for="packageCost">包装成本 ($)</label>
+          <input id="packageCost" type="number" min="0" step="0.01" value="3">
+        </div>
+        <div class="field">
+          <label for="shippingCost">卖家承担的物流 ($)</label>
+          <input id="shippingCost" type="number" min="0" step="0.01" value="8">
+        </div>
+        <div class="field">
+          <label for="otherCost">其他单笔成本 ($)</label>
+          <input id="otherCost" type="number" min="0" step="0.01" value="0">
+          <div class="help">例如质检、耗材、预计损耗等</div>
+        </div>
+        <div class="field">
+          <label for="customerShipping">客户支付运费 ($)</label>
+          <input id="customerShipping" type="number" min="0" step="0.01" value="0">
+          <div class="help">计入订单收入；不是卖家物流成本</div>
+        </div>
+        <div class="field">
+          <label for="cpa">广告获客成本 CPA ($)</label>
+          <input id="cpa" type="number" min="0" step="0.01" value="30">
+          <div class="help">每获得一个订单平均花费的广告费</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <h2>② 平台手续费</h2>
+      <p class="desc">默认使用你指定的估算费率。实际费用会因账户、地区、支付方式和交易条件而不同，请按真实账单调整。</p>
+      <div class="fields">
+        <div class="field">
+          <label for="paypalRate">PayPal费率 (%)</label>
+          <input id="paypalRate" type="number" min="0" step="0.1" value="4.5">
+        </div>
+        <div class="field">
+          <label for="paypalFixed">PayPal固定费用 ($)</label>
+          <input id="paypalFixed" type="number" min="0" step="0.01" value="0.30">
+        </div>
+        <div class="field">
+          <label for="shopifyRate">Shopify交易费率 (%)</label>
+          <input id="shopifyRate" type="number" min="0" step="0.1" value="2">
+          <div class="help">仅按你的模型估算；避免与其他费用重复计入</div>
+        </div>
+        <div class="field">
+          <label for="feeBase">手续费计算基数</label>
+          <select id="feeBase">
+            <option value="total" selected>产品售价 + 客户运费</option>
+            <option value="price">仅产品售价</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>③ 定价目标与计算结果</h2>
+      <p class="desc">设定目标利润率，系统将反推所需售价，并同步展示在当前售价下每单的利润表现。</p>
+      <div class="fields">
+        <div class="field">
+          <label for="targetMargin">目标广告后利润率 (%)</label>
+          <select id="targetMargin">
+            <option value="5">5% — 增长测试</option>
+            <option value="10">10% — 基础目标</option>
+            <option value="15" selected>15% — 平衡目标</option>
+            <option value="20">20% — 盈利目标</option>
+            <option value="25">25% — 较高利润目标</option>
+            <option value="custom">自定义</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="customMargin">自定义目标 (%)</label>
+          <input id="customMargin" type="number" min="0" max="95" step="0.5" value="15" disabled>
+        </div>
+        <div class="field full">
+          <label for="currentPrice">当前/计划产品售价 ($)</label>
+          <input id="currentPrice" type="number" min="0" step="0.01" value="79">
+          <div class="help">用于评估当前售价；修改成本后，目标建议售价会自动更新。</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="hero-result">
+        <div class="label">建议产品售价（达到目标利润率）</div>
+        <div class="value" id="suggestedPrice">$0.00</div>
+        <div class="small" id="suggestedNote">按当前成本、广告CPA与手续费估算</div>
+      </div>
+
+      <div class="results">
+        <div class="result"><span>当前订单总收入</span><strong id="revenue">$0.00</strong></div>
+        <div class="result"><span>产品及履约成本</span><strong id="fulfillment">$0.00</strong></div>
+        <div class="result"><span>PayPal手续费（估算）</span><strong id="paypalFee">$0.00</strong></div>
+        <div class="result"><span>Shopify手续费（估算）</span><strong id="shopifyFee">$0.00</strong></div>
+        <div class="result"><span>广告获客成本</span><strong id="adCost">$0.00</strong></div>
+        <div class="result"><span>广告后单笔利润</span><strong id="profit">$0.00</strong></div>
+        <div class="result"><span>广告后利润率</span><strong id="margin">0.00%</strong></div>
+        <div class="result"><span>当前定价状态</span><strong id="status"><span class="pill">计算中</span></strong></div>
+        <div class="result"><span>当前售价对应的盈亏平衡 CPA</span><strong id="breakEvenCpa">$0.00</strong></div>
+        <div class="result"><span>目标利润下最大可接受 CPA</span><strong id="maxCpa">$0.00</strong></div>
+      </div>
+      <div class="actions">
+        <button class="primary" id="applySuggested" type="button">采用建议售价</button>
+        <button class="secondary" id="reset" type="button">恢复默认参数</button>
+        <button class="secondary" id="copySummary" type="button">复制测算摘要</button>
+      </div>
+      <div class="note" id="advice">填写数据后，将在此显示定价建议。</div>
+    </section>
+  </div>
+
+  <section class="card" style="margin-top:18px">
+    <h2>④ 不同利润目标的售价对照</h2>
+    <p class="desc">用于比较不同定价策略。表格中的利润率是广告后单笔利润率，已扣除上方填写的成本、手续费与 CPA，但不包含所得税、固定人工、月租软件等未输入费用。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>目标利润率</th><th>建议产品售价</th><th>预计订单收入（含客户运费）</th><th>预计单笔利润</th></tr></thead>
+        <tbody id="comparison"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:18px">
+    <h2>计算口径说明</h2>
+    <div class="note">
+      <b>广告后单笔利润</b> = 产品售价 + 客户支付运费 − 产品成本 − 包装成本 − 卖家承担物流 − 其他单笔成本 − PayPal手续费 − Shopify手续费 − 广告CPA。<br>
+      <b>广告后利润率</b> = 广告后单笔利润 ÷ 订单总收入。<br>
+      <b>建议售价</b>会反推手续费随售价变化的影响，并按目标利润率求解。若客户支付运费固定，手续费基数按所选方式计算。<br>
+      <b>注意：</b>这里的“广告后利润”是基于已录入项目的单笔贡献利润估算，不等于企业会计口径的最终净利润；如要估算真正净利润，请把退货损耗、折扣、拒付、税费及固定运营费用合理分摊到单笔订单中。
+    </div>
+  </section>
+
+  <footer class="footer">© 2026 独立站春哥（亿级操盘手）｜带教咨询微信：ch022427</footer>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const num = id => {
+  const v = parseFloat($(id).value);
+  return Number.isFinite(v) ? v : 0;
+};
+const money = n => Number.isFinite(n) ? new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(n) : '无法计算';
+const pct = n => Number.isFinite(n) ? n.toFixed(2) + '%' : '—';
+
+function values(){
+  const price = Math.max(0,num('currentPrice'));
+  const customerShipping = Math.max(0,num('customerShipping'));
+  const productCost = Math.max(0,num('productCost'));
+  const packageCost = Math.max(0,num('packageCost'));
+  const shippingCost = Math.max(0,num('shippingCost'));
+  const otherCost = Math.max(0,num('otherCost'));
+  const cpa = Math.max(0,num('cpa'));
+  const paypalRate = Math.max(0,num('paypalRate'))/100;
+  const paypalFixed = Math.max(0,num('paypalFixed'));
+  const shopifyRate = Math.max(0,num('shopifyRate'))/100;
+  const baseMode = $('feeBase').value;
+  const revenue = price + customerShipping;
+  const feeBase = baseMode === 'price' ? price : revenue;
+  const fulfillment = productCost + packageCost + shippingCost + otherCost;
+  const paypalFee = feeBase * paypalRate + paypalFixed;
+  const shopifyFee = feeBase * shopifyRate;
+  const profit = revenue - fulfillment - paypalFee - shopifyFee - cpa;
+  const margin = revenue > 0 ? profit/revenue*100 : NaN;
+  let targetMargin = $('targetMargin').value === 'custom' ? num('customMargin') : Number($('targetMargin').value);
+  targetMargin = Math.max(0,Math.min(95,targetMargin))/100;
+  return {price,customerShipping,productCost,packageCost,shippingCost,otherCost,cpa,paypalRate,paypalFixed,shopifyRate,baseMode,revenue,feeBase,fulfillment,paypalFee,shopifyFee,profit,margin,targetMargin};
+}
+
+// Solve for product price p so that profit / (p + customer shipping) = target margin.
+// Fees are either charged on product price or on total order revenue, according to selection.
+function solvePrice(v,target){
+  const rate = v.paypalRate + v.shopifyRate;
+  const fixedFee = v.paypalFixed;
+  const fixedCosts = v.fulfillment + v.cpa;
+  const ship = v.customerShipping;
+  const denominator = v.baseMode === 'price' ? (1 - rate - target) : (1 - rate - target);
+  let numerator;
+  if(v.baseMode === 'price'){
+    // profit = p + ship - fixedCosts - p*rate - fixedFee
+    // target*(p+ship) = profit
+    numerator = fixedCosts + fixedFee - ship + target*ship;
+  } else {
+    // profit = p + ship - fixedCosts - (p+ship)*rate - fixedFee
+    numerator = fixedCosts + fixedFee - ship + rate*ship + target*ship;
+  }
+  if(denominator <= 0) return NaN;
+  return Math.max(0,numerator/denominator);
+}
+
+function calcAtPrice(v,price){
+  const revenue = price + v.customerShipping;
+  const base = v.baseMode === 'price' ? price : revenue;
+  const paypal = base*v.paypalRate + v.paypalFixed;
+  const shopify = base*v.shopifyRate;
+  const profit = revenue - v.fulfillment - paypal - shopify - v.cpa;
+  return {revenue,paypal,shopify,profit,margin:revenue>0?profit/revenue*100:NaN};
+}
+
+function calculate(){
+  const v = values();
+  const suggested = solvePrice(v,v.targetMargin);
+  const revenue = v.revenue;
+  const breakEvenCpa = revenue - v.fulfillment - v.paypalFee - v.shopifyFee;
+  const maxCpa = revenue - v.fulfillment - v.paypalFee - v.shopifyFee - revenue*v.targetMargin;
+
+  $('suggestedPrice').textContent = Number.isFinite(suggested) ? money(suggested) : '无法实现';
+  $('suggestedNote').textContent = Number.isFinite(suggested)
+    ? `目标广告后利润率 ${pct(v.targetMargin*100)}；客户支付运费按 $${v.customerShipping.toFixed(2)} 计入收入。`
+    : '当前费率与目标利润率组合无法求解，请检查手续费或目标利润率。';
+
+  $('revenue').textContent = money(v.revenue);
+  $('fulfillment').textContent = money(v.fulfillment);
+  $('paypalFee').textContent = money(v.paypalFee);
+  $('shopifyFee').textContent = money(v.shopifyFee);
+  $('adCost').textContent = money(v.cpa);
+  $('profit').textContent = money(v.profit);
+  $('margin').textContent = pct(v.margin);
+  $('breakEvenCpa').textContent = money(breakEvenCpa);
+  $('maxCpa').textContent = money(maxCpa);
+
+  const status = $('status');
+  let statusText, cls;
+  if(!Number.isFinite(v.margin)){statusText='请先输入有效售价';cls='warn';}
+  else if(v.margin >= 20){statusText='优秀：利润空间较充足';cls='';}
+  else if(v.margin >= 15){statusText='健康：接近理想利润目标';cls='';}
+  else if(v.margin >= 5){statusText='可测试：建议继续优化';cls='warn';}
+  else if(v.margin >= 0){statusText='临界：利润缓冲较小';cls='warn';}
+  else {statusText='亏损：当前售价无法覆盖成本';cls='bad';}
+  status.innerHTML = `<span class="pill ${cls}">${statusText}</span>`;
+
+  if(!Number.isFinite(v.margin)){
+    $('advice').textContent = '请填写大于 0 的产品售价后查看建议。';
+  } else if(!Number.isFinite(suggested)){
+    $('advice').textContent = '按当前费率无法达到该目标利润率，请降低目标、降低手续费或重新评估成本。';
+  } else if(v.profit < 0){
+    $('advice').textContent = `当前售价低于盈亏平衡水平，按已填写项目每单约亏损 ${money(Math.abs(v.profit))}。若要达到目标利润率，建议产品售价约为 ${money(suggested)}。`;
+  } else if(v.margin < v.targetMargin*100){
+    $('advice').textContent = `当前订单有正贡献利润，但利润率低于设定的 ${pct(v.targetMargin*100)} 目标。可考虑将售价调整至约 ${money(suggested)}，或降低 CPA / 单笔成本。`;
+  } else {
+    $('advice').textContent = `当前定价已达到或超过设定的 ${pct(v.targetMargin*100)} 目标利润率。继续投放前，建议用实际退款、拒付和订单数据验证该利润表现是否稳定。`;
+  }
+
+  const targets = [5,10,15,20,25];
+  $('comparison').innerHTML = targets.map(t=>{
+    const p = solvePrice(v,t/100);
+    if(!Number.isFinite(p)) return `<tr><td>${t}%</td><td>无法计算</td><td>—</td><td>—</td></tr>`;
+    const r = calcAtPrice(v,p);
+    return `<tr><td>${t}%</td><td>${money(p)}</td><td>${money(r.revenue)}</td><td>${money(r.profit)}</td></tr>`;
+  }).join('');
+}
+
+function resetDefaults(){
+  const defaults = {productCost:18,packageCost:3,shippingCost:8,otherCost:0,customerShipping:0,cpa:30,paypalRate:4.5,paypalFixed:0.3,shopifyRate:2,feeBase:'total',targetMargin:'15',customMargin:15,currentPrice:79};
+  Object.entries(defaults).forEach(([id,val])=>$(id).value=val);
+  syncCustomMargin();
+  calculate();
+}
+function syncCustomMargin(){
+  const isCustom = $('targetMargin').value === 'custom';
+  $('customMargin').disabled = !isCustom;
+  $('customMargin').setAttribute('aria-disabled', String(!isCustom));
+  if(isCustom) $('customMargin').focus();
+}
+$('targetMargin').addEventListener('change',()=>{
+  syncCustomMargin();
+  calculate();
+});
+document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calculate));
+$('customMargin').addEventListener('change',calculate);
+$('applySuggested').addEventListener('click',()=>{
+  const v=values(); const p=solvePrice(v,v.targetMargin);
+  if(Number.isFinite(p)){ $('currentPrice').value=p.toFixed(2); calculate(); }
+});
+$('reset').addEventListener('click',resetDefaults);
+$('copySummary').addEventListener('click',()=>{
+  const v=values(); const suggested=solvePrice(v,v.targetMargin);
+  const summary = [
+    '独立站产品定价计算器 V1.0｜独立站春哥出品',
+    `当前产品售价：${money(v.price)}`,
+    `订单总收入：${money(v.revenue)}`,
+    `产品及履约成本：${money(v.fulfillment)}`,
+    `PayPal手续费：${money(v.paypalFee)}`,
+    `Shopify手续费：${money(v.shopifyFee)}`,
+    `广告CPA：${money(v.cpa)}`,
+    `广告后单笔利润：${money(v.profit)}`,
+    `广告后利润率：${pct(v.margin)}`,
+    `目标利润率：${pct(v.targetMargin*100)}`,
+    `建议产品售价：${money(suggested)}`
+  ].join('\n');
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(summary).then(()=>{ $('advice').textContent='测算摘要已复制，可粘贴分享。'; }).catch(()=>window.prompt('复制以下测算摘要：',summary));
+  } else {
+    window.prompt('复制以下测算摘要：',summary);
+  }
+});
+syncCustomMargin();
+calculate();
+</script>
+</body>
+</html>
